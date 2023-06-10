@@ -1,0 +1,473 @@
+\documentclass{uofa-eng-assignment}
+\usepackage{amsmath}
+\usepackage{enumerate}% http://ctan.org/pkg/enumerate
+
+\usepackage{lipsum}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+\usepackage{amsmath, amsthm, amssymb, amsfonts, physics}
+
+\newcommand\aug{\fboxsep=-\fboxrule\!\!\!\fbox{\strut}\!\!\!}
+\newcommand*{\name}{\textbf{Luke Nguyen}}
+\newcommand*{\id}{\textbf{D5850A}}
+\newcommand*{\course}{Matrix Theory (EN.625.609)}
+\newcommand*{\assignment}{Final Exam}
+
+\usepackage{mathtools}
+\DeclarePairedDelimiterX{\infdivx}[2]{(}{)}{%
+  #1\;\delimsize\|\;#2%
+}
+\newcommand{\infdiv}{D\infdivx}
+\DeclareRobustCommand{\rchi}{{\mathpalette\irchi\relax}}
+\newcommand{\irchi}[2]{\raisebox{\depth}{$#1\chi$}} % inner command, used by \rchi
+\begin{document}
+
+\maketitle
+
+\begin{enumerate}
+									
+	%%%%%%%%%%%%%%%%%%%%
+	\item[] \textbf{Problem 1} \newline
+	      %%%%%%%%%%%%%%%%%%%%        
+	      Let $A\in \mathbb{C}^{n\times n}$ be an invertible matrix.
+	      \begin{enumerate}
+	      	\item Prove that $A^*$ is invertible and $(A^*)^{-1} = (A^{-1})^*$.
+	      	\item Define $B = A^{-1}A^*$. Prove that $B$ is unitary if and only if $A$ is normal.
+	      \end{enumerate}
+	      %%%%%%%%%%%%%%%%%%%%	      
+	      \textbf{Solution:}
+	      \begin{enumerate}
+	      	\item \textit{This problem was previously asked in \textbf{Problem 5(b), Module 3 Assignment.}}
+	      	      \begin{enumerate}
+	      	      	\item By property of identity matrix, $I = I^*$.
+	      	      	\item By properties of invertible matrix, given that $A$ is invertible, there exists $A^{-1}$ such that $AA^{-1} = A^{-1}A = I$.
+	      	      	\item By laws of Matrix Transpose $(AA^{-1})^* =  (A^{-1})^*A^*$.
+	      	      \end{enumerate}
+	      	      From (i), (ii), (iii)
+	      	      \begin{align*}
+	      	      	(AA^{-1})     & = I       \\
+	      	      	(AA^{-1})^*   & = I^* = I \\
+	      	      	(A^{-1})^*A^* & = I       
+	      	      \end{align*}
+	      	      Thus, by definition of invertible matrix, $A^*$ is invertible  and $(A^*)^{-1} = (A^{-1})^*$. \\
+	      	                 
+	      	\item
+	      	      \begin{enumerate}
+	      	      	\item We show that $B$ is unitary implies $A$ is normal as follows:                      
+	      	      	      \begin{align*}
+	      	      	      	B                                & = A^{-1}A^* \qquad \text{from the definition of } B   \\
+	      	      	      	BB^* = (A^{-1}A^*) (A^{-1}A^*)^* & = I \qquad \text{definition of unitary matrix}        \\
+	      	      	      	A^{-1}A^* A (A^{-1})^*           & = I \qquad \text{laws of Matrix Conjugate Transpose}  \\
+	      	      	      	A^{-1}A^* A (A^{*})^{-1}         & = I \qquad \text{result from (a)}                     \\ 
+                                        A^{-1}A^* A (A^{*})^{-1}A^*      & = A^* \qquad \text{multiples both sides by } A^*                     \\ 
+	      	      	      	(A^{-1}A^* A)                    & = A^* \qquad (A^*)^{-1}A^* = I        \\
+	      	      	      	AA^{-1}A^* A                     & = AA^* \qquad \text{multiples $A$ by both RHS \& LHS} \\
+	      	      	      	A^*A                             & = AA^* \qquad \text{property of inverse matrix}       
+	      	      	      \end{align*}
+	      	      	      Thus $A$ is normal by the   definition of normal matrix.
+	      	      	\item We show that $A$ is normal implies $B$ is unitary as follows:
+                               \begin{enumerate}[(*)]
+                                    \item We show that $BB^* = I$ as follows        
+	      	      	      \begin{align*}
+	      	      	      	BB^* & = (A^{-1}A^*)(A^{-1}A^*)^* \qquad \text{from the definition of $B$}     \\
+	      	      	      	BB^* & = A^{-1}A^*A(A^{-1})^* \qquad \text{laws of Matrix Conjugate Transpose} \\
+	      	      	      	BB^* & = A^{-1}AA^*(A^{-1})^* \qquad \text{use the definition of normal matrix } A^*A = AA^*             \\
+	      	      	      	BB^* & = I \qquad (1)                                                          
+	      	      	      \end{align*}
+                                    \item We show that $B^*B = I$ as follows
+	      	      	      \begin{align*}
+	      	      	      	B^*B        & = (A^{-1}A^*)^*(A^{-1}A^*) \qquad \text{from the definition of $B$}            \\
+	      	      	      	B^*B        & = A(A^{-1})^*A^{-1}A^* \qquad \text{laws of Matrix Conjugate Transpose}        \\
+	      	      	      	(B^*B)^{-1} & = (A^*)^{-1}AA^*A^{-1} \qquad \text{laws of Matrix Inverse \& result from (a)} \\
+	      	      	      	(B^*B)^{-1} & = (A^*)^{-1}A^*AA^{-1}  \qquad \text{use the definition of normal matrix } A^*A = AA^*             \\
+	      	      	      	(B^*B)^{-1} & = I            \qquad \text{property of inverse matrix}                                                                \\
+	      	      	      	B^*B        & = I^{-1} = I \qquad (2)                                                        
+	      	      	      \end{align*}    
+                                \end{enumerate}
+	      	      	      (1), (2) implies that $B$ is an unitary matrix by definition.
+	      	      \end{enumerate}
+	      	      (i), (ii) implies that $B$ is an unitary matrix if and only if $A$ is a normal matrix.
+	      \end{enumerate}
+	      %%%%%%%%%%%%%%%%%%%%
+	\item[] \textbf{Problem 2} \newline
+	      %%%%%%%%%%%%%%%%%%%%        
+	      Consider the linear transformation $T: \mathcal{P}_2(\mathbb{R})\xrightarrow{} \mathbb{R}^{4\times 1}$ defined by
+	      \begin{align*}
+	      	T(a + bt + ct^2) = \begin{bmatrix} 
+	      	2a + 10b + 8c                      \\
+	      	a - c                              \\
+	      	3b + 3c                            \\
+	      	-b - c                             
+	      	\end{bmatrix}                      
+	      \end{align*}
+	      \begin{enumerate}
+	      	\item Find an orthogonal basis $B$ for $R(T)$.
+	      	\item Find the best approximation for $(1, 1, -1, 1)^T$ in $R(T)$.
+	      	\item Find a least squares solution of $T(x) = (1, 1, -1, 1)^T$.
+	      	\item Find an orthogonal basis $C$ for $\mathbb{R}^{4\times 1}$ such that $B$ is a subset of $C$.
+	      \end{enumerate}
+	      %%%%%%%%%%%%%%%%%%%%	      
+	      \textbf{Solution:}       
+	      \begin{enumerate}
+	      	\item First, we find the basis for $R(T)$ using the same procedure as in \textbf{\textit{Problem 2(b), Module 3 Assignment}} as follows: \\
+	      	      Consider the standard basis for  $\mathcal{P}_2$. We can compute
+	      	      \begin{align*}
+	      	      	T(1) = \begin{bmatrix}   
+	      	      	2                        \\ 1 \\ 0 \\ 0
+	      	      	\end{bmatrix}, \qquad    
+	      	      	T(t) = \begin{bmatrix}   
+	      	      	10                       \\ 0 \\ 3 \\ -1
+	      	      	\end{bmatrix}, \qquad    
+	      	      	T(t^2) = \begin{bmatrix} 
+	      	      	8                        \\ -1 \\ 3 \\ -1
+	      	      	\end{bmatrix}            
+	      	      \end{align*}
+	      	      Thus, $R(T) = \text{span}((2, 1, 0, 0)^T, (10, 0, 3, -1)^T, (8, -1, 3, -1)^T))$. \\ Note that
+	      	      \begin{align*}
+	      	      	\begin{bmatrix} 
+	      	      	8               \\ -1 \\ 3 \\ -1
+	      	      	\end{bmatrix} = 
+	      	      	\begin{bmatrix} 
+	      	      	10              \\ 0 \\ 3 \\ -1
+	      	      	\end{bmatrix} - 
+	      	      	\begin{bmatrix} 
+	      	      	2               \\ 1 \\ 0 \\ 0
+	      	      	\end{bmatrix}   
+	      	      \end{align*}
+	      	      so we can remove the $3^{rd}$ vector and the resulting set will still span $R(T)$. We claim this set is linearly independent - they have different indices for the zero entries. And as it spans $R(T)$ and is linearly independent, it is a basis of $R(T)$.\\
+	      	      We now can applying the Gram-Schmidt orthogonalization as follows
+	      	      \begin{align*}
+	      	      	\vb{v}_1 & = \begin{bmatrix} 
+	      	      	2 \\ 1 \\ 0 \\ 0
+	      	      	\end{bmatrix} \\
+	      	      	\vb{v}_2 & = \begin{bmatrix} 
+	      	      	10 \\ 0 \\ 3 \\ -1
+	      	      	\end{bmatrix} - 
+	      	      	\frac{\langle (10, 0, 3, -1)^T, (2, 1, 0, 0)^T\rangle}{\langle (2, 1, 0, 0)^T, (2, 1, 0, 0)^T \rangle}(2, 1, 0, 0)^T     \\           
+	      	      	\vb{v}_2 & = \begin{bmatrix} 
+	      	      	2 \\-4 \\3 \\ -1
+	      	      	\end{bmatrix}
+	      	      \end{align*} \\
+	      	      Thus $B = \{(2, 1, 0, 0)^T, (2, -4, 3, -1)^T\}$ an orthogonal basis for $R(T)$.
+	      	\item Using the result from (a), $U = \{(\frac{2}{\sqrt{5}}, \frac{1}{\sqrt{5}},0 ,0)^T, (\frac{2}{\sqrt{30}}, \frac{-4}{\sqrt{30}}, \frac{3}{\sqrt{30}}, \frac{-1}{\sqrt{30}})^T \}$ is an orthonormal basis of $R(T)$. Let $\vb{v} = (1, 1, -1, 1)^T$, we can find $\text{proj}_U(\vb{v})$ using \textbf{\textit{Definition 4.18}} as follows
+	      	      \begin{align*}
+	      	      	\text{proj}_U(\vb{v}) = & \langle (1, 1, -1, 1)^T,  (\frac{2}{\sqrt{5}}, \frac{1}{\sqrt{5}},0 ,0)^T\rangle  (\frac{2}{\sqrt{5}}, \frac{1}{\sqrt{5}},0 ,0)^T +                                                                                 \\
+	      	      	                        & \langle (1, 1, -1, 1)^T,  (\frac{2}{\sqrt{30}}, \frac{-4}{\sqrt{30}}, \frac{3}{\sqrt{30}}, \frac{-1}{\sqrt{30}})^T\rangle  (\frac{2}{\sqrt{30}}, \frac{-4}{\sqrt{30}}, \frac{3}{\sqrt{30}}, \frac{-1}{\sqrt{30}})^T \\
+	      	      	\text{proj}_U(\vb{v}) = & (\frac{6}{5}, \frac{3}{5}, 0, 0)^T + (\frac{-2}{5}, \frac{4}{5}, \frac{-3}{5}, \frac{1}{5})^T                                                                                                                       \\
+	      	      	\text{proj}_U(\vb{v}) = & (\frac{4}{5}, \frac{7}{5}, \frac{-3}{5}, \frac{1}{5})^T                                                                                                                                                             
+	      	      \end{align*}
+	      	      Thus $(\frac{4}{5}, \frac{7}{5}, \frac{-3}{5}, \frac{1}{5})^T$ is the best approximation of $\vb{v}$ from $R(T)$ by \textbf{\textit{Theorem 4.40}}.
+	      	\item Choose standard bases $P = \{e_1, e_2, e_3 \}$ for $\mathcal{P}_2(\mathbb{R})$ and $E = \{\tilde{e}_1, \tilde{e}_2, \tilde{e}_3, \tilde{e}_4\}$. Find the matrix representation of the linear transformation $T$ with respect to the ordered bases $B$ and $C$, denoted by $[T]_{E, P}$ using the same procedure as \textbf{\textit{Example 2.39}} as follows
+	      	      \begin{align*}
+	      	      	T(e_1) & = (2, 1, 0, 0)^T = 2\tilde{e}_1 + \tilde{e}_2                                  \\
+	      	      	T(e_2) & = (10, 0, 3, -1)^T = 10\tilde{e}_1 + 3\tilde{e}_3 - \tilde{e}_4                \\
+	      	      	T(e_3) & = (8, -1, 3, -1)^T = 8\tilde{e}_1 - \tilde{e}_2 +  3\tilde{e}_3 -  \tilde{e}_4 \\
+	      	      \end{align*}
+	      	      Therefore
+	      	      \begin{align*}
+	      	      	[T]_{E, P} = \begin{bmatrix}
+	      	      	2 & 10 & 8  \\
+	      	      	1 & 0  & -1 \\
+	      	      	0 & 3  & 3  \\
+	      	      	0 & -1 & -1 
+	      	      	\end{bmatrix}
+	      	      \end{align*}
+	      	      From (a), we know that the columns of $[T]_{E, P}$ are not linearly independent and $T$ is not an injective transformation. Thus, the least squares solution is not unique by \textbf{\textit{Theorm 4.45}}.. Let $[A]_{E, P'} = \begin{bmatrix}
+	      	      2 &10 \\ 1 &0 \\ 0 &3 \\ 0 &-1
+	      	\end{bmatrix}$, where $P' = \{e_1, e_2 \}$ is a standard base for $\mathcal{P}_1$ .  Because the first two columns of $[T]_{E, P}$ spans $R(T)$, we can fix $c = 0 $ and let $u' = a + bt$ and the following holds for all $a, b \in \mathbb{R}$
+	      	\begin{align*}
+	      		[A]_{E, P'}(a, b)^T = [T]_{E, P}(a, b, 0)^T 
+	      	\end{align*}
+	      	Thus, the pair of $a, b$ which is the least squares solution of $A(x') = (1, 1, -1, 1)^T$ is also a least squares solution of $T(x) = (1, 1, -1, 1)^T$. Now we can use the same approach as \textbf{\textit{Problem 4, Module 9}} to solve for the $QR$-factorization of $[A]_{E, P'}$. \\
+	      	\begin{enumerate}
+	      		\item First we find $Q^*$ by using the result from (b) as follows            
+	      		      \begin{align*}
+	      		      	Q = \begin{bmatrix}
+	      		      	\frac{2}{\sqrt{5}} & \frac{2}{\sqrt{30}}  \\
+	      		      	\frac{1}{\sqrt{5}} & \frac{-4}{\sqrt{30}} \\
+	      		      	0                  & \frac{3}{\sqrt{30}}  \\
+	      		      	0                  & \frac{-1}{\sqrt{30}} \\
+	      		      	\end{bmatrix}
+	      		      \end{align*}
+	      		      Since all entries of $Q$ are real, $Q^* = Q^T$. That is,
+	      		      \begin{align*}
+	      		      	Q^* = \begin{bmatrix}
+	      		      	\frac{2}{\sqrt{5}}  & \frac{1}{\sqrt{5}}   & 0                   & 0                    \\
+	      		      	\frac{2}{\sqrt{30}} & \frac{-4}{\sqrt{30}} & \frac{3}{\sqrt{30}} & \frac{-1}{\sqrt{30}} 
+	      		      	\end{bmatrix}
+	      		      \end{align*}
+	      		\item Second we find $R^{-1}$ by using the $\vb{a_1}, \vb{a_2}$ as columns of $[A]_{E, P'}$ and $\vb{q_1}, \vb{q_2}$ are columns of $Q$ as follows
+	      		      \begin{align*}
+	      		      	R                                  & = \begin{bmatrix}                  
+	      		      	\langle \vb{a_1}, \vb{q_1} \rangle & \langle \vb{a_2}, \vb{q_1} \rangle \\
+	      		      	0                                  & \langle \vb{a_2}, \vb{q_2} \rangle 
+	      		      	\end{bmatrix} \\
+	      		      	                                   & = \begin{bmatrix}                  
+	      		      	\sqrt{5}                           & 4\sqrt{5}                          \\
+	      		      	0                                  & \sqrt{30}                          
+	      		      	\end{bmatrix}
+	      		      \end{align*}
+	      		      To compute $R^{-1}$ we augment $R$ with the $2\times 2$ identity matrix and reduce to row reduced echelon form to get
+	      		      \begin{align*}
+	      		      	\begin{bmatrix}
+	      		      	\sqrt{5} & 4\sqrt{5} & 1                  & 0            \\
+	      		      	0        & \sqrt{30} & 0                  & 1            
+	      		      	\end{bmatrix} \xrightarrow{E_{1/\sqrt{5}}[1]}             
+	      		      	\begin{bmatrix}
+	      		      	1        & 4         & \frac{1}{\sqrt{5}} & 0            \\
+	      		      	0        & \sqrt{30} & 0                  & 1            
+	      		      	\end{bmatrix} \\ \xrightarrow{E_{1/\sqrt{30}}[2]}             
+	      		      	\begin{bmatrix}
+	      		      	1        & 4         & \frac{1}{\sqrt{5}} & 0            \\
+	      		      	0        & 1         & 0                  & 1/\sqrt{30}  
+	      		      	\end{bmatrix}  \xrightarrow{E_{-4}[1, 2]}             
+	      		      	\begin{bmatrix}
+	      		      	1        & 0         & \frac{1}{\sqrt{5}} & -4/\sqrt{30} \\
+	      		      	0        & 1         & 0                  & 1/\sqrt{30}  
+	      		      	\end{bmatrix}
+	      		      \end{align*}
+	      		\item This gives us the least squares solution
+	      		      \begin{align*}
+	      		      	(a, b)^T &= R^{-1}Q^*(1, 1, -1, 1)^T \\
+	      		      	(a, b)^T &= \begin{bmatrix}
+	      		      	1/\sqrt{5} &-4/\sqrt{30} \\
+	      		      	0 & 1/\sqrt{30}
+	      		      	\end{bmatrix}\begin{bmatrix}
+	      		      	\frac{2}{\sqrt{5}}  & \frac{1}{\sqrt{5}}   & 0                   & 0                    \\
+	      		      	\frac{2}{\sqrt{30}} & \frac{-4}{\sqrt{30}} & \frac{3}{\sqrt{30}} & \frac{-1}{\sqrt{30}} 
+	      		      	\end{bmatrix}
+	      		      	\begin{bmatrix}
+	      		      	1 \\1 \\-1 \\1
+	      		      	\end{bmatrix} \\
+	      		      	(a, b)^T &= \begin{bmatrix}
+	      		      	2/15                & 11/15                & -2/5                & 2/15                 \\
+	      		      	1/15                & -2/15                & 1/10                & -1/30                \\
+	      		      	\end{bmatrix}\begin{bmatrix}
+	      		      	1 \\1 \\-1 \\1
+	      		      	\end{bmatrix} \\
+	      		      	(a, b)^T &= \begin{bmatrix}
+	      		      	7/5 \\ -1/5
+	      		      	\end{bmatrix}
+	      		      \end{align*}
+	      	\end{enumerate}
+	      	Thus $x = \frac{7}{5} - \frac{1}{5}t$ is a least square solutions of $T(x) = (1, 1, -1, 1)^T$
+	      	\item From (a), the two vectors of $B = \{(2, 1, 0, 0)^T, (2, -4, 3, -1)^T\}$ will be the first two vectors $\vb{c}_1, \vb{c}_2$ of $C$ as  they are orthogonal vectors and $B$ is a subset of $C$. Let $\vb{c}_3 = (a, b, c, d)^T \text{ where } a, b, c, d\in \mathbb{R}$ be the third vector of $C$. Because $C$ is an orthogonal basis, $\langle \vb{c}_1, \vb{c}_3 \rangle = 0$ and $\langle \vb{c}_2, \vb{c}_3 \rangle = 0$ by \textit{\textbf{Definition 4.10}}. Thus,      any non-zero solution to the following system of equations can be $\vb{c}_3$.
+	      	      \begin{align*}
+	      	      	  & \begin{cases} 
+	      	      	2a + b = 0 \\
+	      	      	2a -4b + 3c - d = 0
+	      	      	\end{cases} \\
+	      	      	  & \begin{cases} 
+	      	      	2a = -b \\
+	      	      	-5b + 3c - d = 0
+	      	      	\end{cases}
+	      	      \end{align*}
+	      	      Set $a = b = 0$ to solve for the first equation of the system, then $c = 1, d = 3$ will make the system of equations above consistent, therefore, $\vb{c}_3 = (0, 0, 1, 3)^T$ can be the third vector of $C$. \\
+	      	      Again set $\vb{c}_4 = (a, b, c, d)^T$ where $a, b, c, d \in \mathbb{R}$ and applying the same logic as above
+	      	      \begin{align*}
+	      	      	  & \begin{cases} 
+	      	      	2a + b = 0 \\
+	      	      	2a -4b + 3c - d = 0 \\
+	      	      	c + 3d = 0
+	      	      	\end{cases} \\            
+	      	      	  & \begin{cases} 
+	      	      	2a  = -b \\
+	      	      	-5b - 10d = 0 \\                
+	      	      	c = -3d
+	      	      	\end{cases}                
+	      	      \end{align*}
+	      	      Set $b = 2, d = -1$ to solve for the second equation of the system, then $a = -1, c = 3$ will make the system of equations above consistent, therefore $\vb{c}_4 = (-1, 2, 3, -1)^T$ can be the forth vector of $C$. \\
+	      	      Therefore, $C =\{ (2, 1, 0, 0)^T, (2, -4, 3, -1)^T, (0, 0, 1 ,3)^T, (-1, 2, 3, -1)^T\}$.
+	      \end{enumerate}
+	      %%%%%%%%%%%%%%%%%%%%
+	\item[] \textbf{Problem 3} \newline
+	      %%%%%%%%%%%%%%%%%%%%        
+	      Let $A \in \mathbb{C}^{3\times 3}$ such that $A^3$ is the zero matrix but $A^2$ is not the zero matrix. Find the Jordan matrix similar to $A$.     \\       
+	      %%%%%%%%%%%%%%%%%%%%	      
+	      \textbf{Solution:} \\
+	      By \textbf{\textit{Theorem 6.19}} we know that there exists an invertible matrix $S\in \mathbb{C}^{3\times 3}$ such that $J = S^{-1}AS$ where $J \in \mathbb{C}^{3\times 3}$ is a Jordan matrix. 
+	      \begin{align*}
+	      	A^3 = (S^{-1}JS)^3 = S^{-1}J^3S = 0 
+	      \end{align*}
+	      Thus, $J^3 = 0$. Check all the possibilities of possible cycles of Jordan blocks which has length less than or equal to 3 as follows
+	      \begin{align*}
+	      	J(\lambda, 1) &= \begin{bmatrix}
+	      	\lambda
+	      	\end{bmatrix}, 
+	      	(J(\lambda, 1))^2 = \begin{bmatrix}
+	      	\lambda^2
+	      	\end{bmatrix}      ,
+	      	(J(\lambda, 1))^3 = \begin{bmatrix}
+	      	\lambda^3
+	      	\end{bmatrix}  \qquad (1)    \\
+	      	J(\lambda, 2) &= \begin{bmatrix}
+	      	\lambda & 1 \\
+	      	0 &\lambda
+	      	\end{bmatrix}, 
+	      	(J(\lambda, 2))^2 = \begin{bmatrix}
+	      	\lambda^2 &2\lambda \\
+	      	0 &\lambda^2
+	      	\end{bmatrix}      ,
+	      	(J(\lambda, 2))^3 = \begin{bmatrix}
+	      	\lambda^3 & 3\lambda^2 &            \\ 0 &\lambda^3
+	      	\end{bmatrix}    \qquad (2)  \\
+	      	J(\lambda, 3) &= \begin{bmatrix}
+	      	\lambda   & 1          & 0          \\
+	      	0         & \lambda    & 1          \\
+	      	0         & 0          & \lambda    \\
+	      	\end{bmatrix},                
+	      	(J(\lambda, 3))^2 = \begin{bmatrix}
+	      	\lambda^2 & 2\lambda   & 1          \\
+	      	0         & \lambda^2  & 2\lambda   \\
+	      	0         & 0          & \lambda^2  \\
+	      	\end{bmatrix},
+	      	(J(\lambda, 3))^3 = \begin{bmatrix}
+	      	\lambda^3 & 3\lambda^2 & 3\lambda   \\
+	      	0         & \lambda^3  & 3\lambda^2 \\
+	      	0         & 0          & \lambda^3  \\
+	      	\end{bmatrix} = 0 \qquad (3)
+	      \end{align*}
+	      (1) implies that if $J(\lambda, 1)$ exists in J, then 
+       \begin{enumerate}[i]
+           \item If $\lambda = 0$; which then implies that the corresponding block in $J^2, J^3$ will both be zero. \\
+           \item If $\lambda \neq 0$; which then implies that the corresponding block in $J^2, J^3$ will both be non zero. \\
+       \end{enumerate}
+	      (2) implies that if $J(\lambda, 2)$ exists in J, 
+       \begin{enumerate}[i]
+           \item If $\lambda = 0$; which then implies that the corresponding block in $J^2, J^3$ will both be zero. \\
+           \item If $\lambda \neq 0$; which then implies that the corresponding block in $J^2, J^3$ will both be non zero. \\
+       \end{enumerate}
+	      Thus, if only cycles of length 1 or 2 exist in $J$, then either 
+	      \begin{enumerate}[i]
+	      	\item $J^2 = 0, J^3 = 0$, which implies $A^2 = 0, A^3 = 0$.
+	      	\item $J^2 \neq 0, J^3 \neq 0$, which implies $A^2 \neq 0, A^3 \neq 0$.
+	      \end{enumerate} 
+	      Thus, the only possibility for $J$ is that it only has 1 cycle of length 3. In that case, from (3), $J^3 = 0$ if and only if $\lambda = 0$. Thus,
+	      \begin{align*}
+	      	J = \begin{bmatrix}
+	      	0 & 1 & 0 \\
+	      	0 & 0 & 1 \\
+	      	0 & 0 & 0 
+	      	\end{bmatrix}
+	      \end{align*}
+	      
+	      %%%%%%%%%%%%%%%%%%%%
+	\item[] \textbf{Problem 4} \newline
+	      %%%%%%%%%%%%%%%%%%%%        
+	      Let $\vb{w} \in \mathbb{R}^{n\times 1}$   with $\norm{\vb{w}}_2 = 3$. Define $A = I - \vb{w}\vb{w}^T$ where $I$ is the $n\times n$ identity matrix.
+	      \begin{enumerate}
+	      	\item Show that $\vb{w}$ is an eigenvector of $A$ and find its corresponding eigenvalue.
+	      	\item Let $\vb{v} \in \mathbb{R}^{n\times 1}$ such that $\vb{v}$ is orthogonal to $\vb{w}$. Show that $\vb{v}$ is an eigenvalue of $A$ and find its corresponding eigenvalue.
+	      	\item Find $\sum$ such that $Q\sum P^*$ is a singular value decomposition of $A$.
+	      	\item Prove that $A$ is diagonalizable.
+	      	\item Is $A$ invertible?
+	      \end{enumerate}
+	      %%%%%%%%%%%%%%%%%%%%	      
+	      \textbf{Solution:} \\
+	      \begin{enumerate}
+	      	\item Let $\vb{w} = (w_1, w_2, ... w_n)$, then the entry of $i^{th}$ row  and  $j^{th}$ column will be $w_i w_j$, thus
+	      	      \begin{align*}
+	      	      	A &= I - \vb{w} \vb{w}^T \\
+	      	      	A &= \begin{bmatrix}
+	      	      	1           & 0        & \dots  & 0            & 0           \\
+	      	      	0           & \ddots   & \ddots & \ddots       & 0           \\
+	      	      	\vdots      & \ddots   & \ddots & \ddots       & \vdots      \\
+	      	      	0           & \ddots   & \ddots & \ddots       & 0           \\
+	      	      	0           & 0        & \dots  & 0            & 1           
+	      	      	\end{bmatrix} -
+	      	      	\begin{bmatrix}
+	      	      	w_1 w_1     & w_1w_2   & \dots  & w_1 w_{n-1}  & w_1 w_n     \\
+	      	      	w_2w_1      & \ddots   & \ddots & \ddots       & w_2 w_n     \\
+	      	      	\vdots      & \ddots   & \ddots & \ddots       & \vdots      \\
+	      	      	w_{n-1}w_1  & \ddots   & \ddots & \ddots       & w_{n-1}w_n  \\
+	      	      	w_nw_1      & w_n w_2  & \dots  & w_n w_{n-1}  & w_n w_n     
+	      	      	\end{bmatrix} \\
+	      	      	A &= 
+	      	      	\begin{bmatrix}
+	      	      	1 - w_1 w_1 & -w_1w_2  & \dots  & -w_1 w_{n-1} & -w_1 w_n    \\
+	      	      	-w_2w_1     & \ddots   & \ddots & \ddots       & -w_2 w_n    \\
+	      	      	\vdots      & \ddots   & \ddots & \ddots       & \vdots      \\
+	      	      	-w_{n-1}w_1 & \ddots   & \ddots & \ddots       & -w_{n-1}w_n \\
+	      	      	-w_nw_1     & -w_n w_2 & \dots  & -w_n w_{n-1} & 1 - w_n w_n 
+	      	      	\end{bmatrix} \\
+	      	      	A\vb{w} &= 
+	      	      	\begin{bmatrix}
+	      	      	(w_1 - w_1^3)  - (w_1 w_2^2) - \dots - (w_1 w_{n-1}^2) - (w_1 w_n^2)\\
+	      	      	\vdots \\ 
+	      	      	\vdots \\ 
+	      	      	\vdots \\
+	      	      	-w_n w_1^2  - (w_n w_2^2) - \dots - (w_n w_{n-1}^2) - (w_n -  w_n^3)\\
+	      	      	\end{bmatrix} 
+	      	      \end{align*}
+	      	      \begin{align*}
+	      	      	A\vb{w} & = 
+	      	      	\begin{bmatrix}
+	      	      	w_1(1 - (w_1^2 + \dots w_n^2)) \\
+	      	      	\vdots \\ 
+	      	      	\vdots \\ 
+	      	      	\vdots \\
+	      	      	w_n(1 - (w_1^2 + \dots w_n^2)) \\
+	      	      	\end{bmatrix} \\
+	      	      	A\vb{w} & = 
+	      	      	\begin{bmatrix}
+	      	      	w_1(1 - 3^2) \\
+	      	      	\vdots \\ 
+	      	      	\vdots \\ 
+	      	      	\vdots \\
+	      	      	w_n(1 - 3^2) \\
+	      	      	\end{bmatrix} = -8\vb{w}
+	      	      \end{align*}
+	      	      Thus by \textbf{\textit{Definition 5.1}}, $\vb{w}$ is an eigenvector of $A$ and its corresponding eigenvalue is -8.
+	      	      
+	      	\item From (a) we have
+	      	      \begin{align*}
+	      	      	A\vb{v} & = 
+	      	      	\begin{bmatrix}
+	      	      	(v_1 - w_1 (v_1 w_1))  - w_1(v_2 w_2) - \dots - w_1 (w_{n-1} v_{n-1}) - w_1(w_n v_n)\\
+	      	      	\vdots \\ 
+	      	      	\vdots \\ 
+	      	      	\vdots \\
+	      	      	w_n (v_1 w_1)  - w_n(v_2 w_2) - \dots - w_n (w_{n-1} v_{n-1}) + (v_n - w_n(w_n v_n))\\
+	      	      	\end{bmatrix} \\
+	      	      	A\vb{v} & = 
+	      	      	\begin{bmatrix}
+	      	      	v_1 - 0 \\
+	      	      	\vdots \\ 
+	      	      	\vdots \\ 
+	      	      	\vdots \\
+	      	      	v_n - 0
+	      	      	\end{bmatrix} = 1\vb{v} \qquad \text{\textit{group the terms which are the dot product two orthogonal vectors}}
+	      	      \end{align*}         
+	      	      Thus by \textbf{\textit{Definition 5.1}}, $\vb{v}$ is an eigenvector of $A$ and its corresponding eigenvalue is 1.
+	      	\item \begin{enumerate}
+	      	\item From (a), we know that $A$ is a self-joint matrix, because for every pair of non-diagonal entries of $A$ where one entry is of (row $i^{th}$, column $j^{th}$) and one entry is of (row $j^{th}$, column $i^{th}$), both of them have the value $-w_i w_j$. Thus $A = A^*$ and $A$ is a self-joint matrix by \textbf{\textit{Definition 7.1}}. 
+	      	\item Also, we prove that the singular values of $A$ are precisely the absolute values of the eigenvalues of $A$, by reusing the proof from \textbf{\textit{Problem 2, Module 13}} as follows  \textit{(precisely recite the proof from the solution)} \\       
+	      	      By \textbf{\textit{Theorem 7.36}}, eig$(A^2) = \{\lambda^2 : \lambda  \in \text{eig(A)} \}$ . Thus the singular values of $A$ are the nonnegative square roots of $\lambda^2$ for each eigenvalue $\lambda$ of $A$, which is exactly $|\lambda|$ for each eigenvalue $\lambda$ of $A$. 
+	      	\item From (b), we know that every vector which is orthogonal to $\vb{w}$ is an eigenvector of $A$. Together with $\vb{w}$, the set of all orthorgonal vectors to $\vb{w}$ will span $A$. Thus the basis would have $n$ vectors including $\vb{w}$. Thus there are $n - 1$ linearly independent vectors orthogonal to $\vb{w}$ and the eigenvalue of each of them is 1. 
+	      \end{enumerate}
+	      From (i), (ii), (iii) and along with \textbf{\textit{Theorem 7.46}}, we have $Z = \text{diag}(1, ..., 1, 8) \in \mathbb{R}^{n\times n}$.
+	\item 
+	      \begin{enumerate}
+	      	\item From (c), we know that $A$ is a self joint matrix, and by \textbf{\textit{Definition 7.1}}, $A$ is a normal matrix.
+	      	\item From \textbf{\textit{Theorem 7.35}}, we know that every normal matrix is similar to a diagonal matrix.
+	      \end{enumerate}
+	      (i), (i) imply that $A$ is a diagonalizable matrix by \textbf{\textit{Definitin 6.1}}.
+	\item
+	      \begin{enumerate}
+	      	\item From (c), 0 is not an eigenvalue of $A$.
+	      	\item From \textbf{\textit{Eigenvalue Characterization of Invertibility Theorem, Module 10}}, $A$ is invertible if and only if 0 is not an eigenvalue of $A$.
+	      \end{enumerate}
+	      (i), (ii) imply that $A$ is invertible.
+\end{enumerate}        
+        
+\end{enumerate}
+
+
+\end{document}  
